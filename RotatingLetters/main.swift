@@ -11,26 +11,36 @@ import Foundation
 // Get the user input
 var rawInput = readLine()
 
+
 // Make sure input was given (create a string from the string)
-guard let input = rawInput else {
-    //Error
-    exit(9)
+var validInput = ""
+while 1==1 {
+    guard let givenInput = readLine() else {
+        //Error
+        print("Please input string between 1-30 UPPERCASE characters with NO SPACES")
+        continue
+    }
+    if givenInput.count < 1 || givenInput.count > 30 || givenInput == " "  {
+        print("Please input string between 1-30 UPPERCASE characters with NO SPACES")
+        continue
+    }
+    validInput = givenInput
+    break
+
 }
 
-// Print out the input provided
-print("You said:")
-print(rawInput)
-print(input)
 
+
+//Process
 var rotaingLetter = 0
 var nonRotatingLetter = 0
-for letters in input {
-    print(letters)
+for letter in validInput {
+    //print(letters)
     
-    switch letters {
+    switch letter {
     case "I" , "O" , "S" , "H" , "Z" , "X" , "N" :
         rotaingLetter += 1
-    case "A" , "B" , "C" , "D" , "E" , "F" , "G" , "J" , "K" , "L" , "M" , "P" , "Q" , "R" , "T" , "U" , "V" , "W" , "Y" , " " :
+    case "A" , "B" , "C" , "D" , "E" , "F" , "G" , "J" , "K" , "L" , "M" , "P" , "Q" , "R" , "T" , "U" , "V" , "W" , "Y"  :
         nonRotatingLetter += 1000
     case "a" , "b" , "c" , "d" , "e" , "f" , "g" , "j" , "k" , "l" , "m" , "p" , "q" , "r" , "t" , "u" , "v" , "w" , "y" :
         nonRotatingLetter += 1000
@@ -40,6 +50,7 @@ for letters in input {
     
 }
 
+//Output
 if rotaingLetter > nonRotatingLetter {
     print("Yes")
 } else if nonRotatingLetter > rotaingLetter {
